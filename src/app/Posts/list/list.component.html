@@ -1,0 +1,26 @@
+<div class="container" >
+<h3 class="text-center mb-5 mt-5">Posts List</h3>
+<a routerLink="/CreatePost" *ngIf="isLogged" class="btn btn-success mb-5">Create New Post</a>
+<table class="table table-bordered" *ngIf="isLoaded">
+  <thead>
+    <tr>
+      <th>Post Id</th>
+      <th>Post Title</th>
+      <th>Control</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let post of posts">
+        <td>{{ post.id }}</td>
+        <td>{{ post.postTitle }}</td>
+        <td>
+          <a class="btn btn-default" *ngIf="isLogged" routerLink="/EditPost/{{post.id}}">Edit</a>
+          <button class="btn btn-danger" *ngIf="isLogged" (click)="delete(post.id)">Delete</button>
+        </td>
+    </tr>
+  </tbody>
+</table>
+
+
+
+</div>

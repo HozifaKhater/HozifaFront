@@ -1,0 +1,30 @@
+
+<div class="container" *ngIf="isLoaded">
+  <h2 class="text-center mt-5 mb-5">Edit Post</h2>
+  <form #EditPost="ngForm" (onSubmit)="submit()" autocomplete="off" (ngSubmit)="submit(EditPost.value)">
+    <div class="form-group">
+      <label for="">Post Title</label>
+      <input type="text" [(ngModel)]= "post.postTitle" #postTitle="ngModel" [ngClass]="
+        {'form-control' : true,
+        'is-invalid' : !postTitle?.valid && postTitle?.touched,
+        'is-valid' : postTitle?.valid && postTitle?.touched }"
+        required
+        name="postTitle" id="postTitle"
+        >
+        <small *ngIf="postTitle?.errors?.required && postTitle?.touched" style="color: red;">Post Title is Required</small>
+    </div>
+    <div class="form-group">
+      <label for="">Post Body</label>
+      <textarea name="postDesc" id="postDesc" [(ngModel)]= "post.postDesc" #postDesc="ngModel" cols="30" rows="10"
+      [ngClass]="
+        {'form-control' : true,
+        'is-invalid' : !postDesc?.valid && postDesc?.touched,
+        'is-valid' : postDesc?.valid && postDesc?.touched }"
+        required ></textarea>
+        <small *ngIf="postDesc?.errors?.required && postDesc?.touched" style="color: red;">Post Body is Required</small>
+    </div>
+    <div class="form-group">
+      <button [disabled]="!EditPost.form.valid" class="btn btn-success btn-block">Edit Post</button>
+    </div>
+  </form>
+</div>

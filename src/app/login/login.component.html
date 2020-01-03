@@ -1,0 +1,35 @@
+
+<div class="container">
+  <form #Login="ngForm" (onSubmit)="submit()" autocomplete="off" (ngSubmit)="submit(Login.value)">
+    <div class="form-group">
+      <label for="">Email Address</label>
+      <input type="email" ngModel #userName="ngModel" [ngClass]="
+        {'form-control' : true,
+        'is-invalid' : !userName?.valid && userName?.touched,
+        'is-valid' : userName?.valid && userName?.touched }"
+        required
+        pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
+        name="userName" id="userName" placeholder="Email Address"
+        >
+        <small *ngIf="userName?.errors?.required && userName?.touched" style="color: red;">Email Address is Required</small>
+        <small *ngIf="userName?.errors?.pattern && userName?.touched" style="color: red;">Only Email Type Allowed</small>
+
+    </div>
+
+    <div class="form-group">
+      <label for="">Password</label>
+      <input type="password" ngModel #password="ngModel" [ngClass]="
+        {'form-control' : true,
+        'is-invalid' : !password?.valid && password?.touched,
+        'is-valid' : password?.valid && password?.touched }"
+        required
+        name="password" id="password" placeholder="Password"
+        >
+        <small *ngIf="password?.errors?.required && password?.touched" style="color: red;">Password is Required</small>
+
+    </div>
+    <div class="form-group">
+      <button [disabled]="!Login.form.valid" class="btn btn-success">Login</button>
+    </div>
+  </form>
+</div>

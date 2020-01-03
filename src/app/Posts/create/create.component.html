@@ -1,0 +1,32 @@
+
+<div class="container">
+  <h2 class="text-center mt-5 mb-5">Create Post</h2>
+  <form #CreatePost="ngForm" (onSubmit)="submit()" autocomplete="off" (ngSubmit)="submit(CreatePost.value)">
+    <div class="form-group">
+      <label for="">Post Title</label>
+      <input type="text" ngModel #postTitle="ngModel" [ngClass]="
+        {'form-control' : true,
+        'is-invalid' : !postTitle?.valid && postTitle?.touched,
+        'is-valid' : postTitle?.valid && postTitle?.touched }"
+        required
+        name="postTitle" id="postTitle" placeholder="Post Title"
+        >
+        <small *ngIf="postTitle?.errors?.required && postTitle?.touched" style="color: red;">Post Title is Required</small>
+    </div>
+    <div class="form-group">
+      <label for="">Post Body</label>
+      <textarea name="postDesc" id="postDesc" ngModel #postDesc="ngModel" cols="30" rows="10"
+      [ngClass]="
+        {'form-control' : true,
+        'is-invalid' : !postDesc?.valid && postDesc?.touched,
+        'is-valid' : postDesc?.valid && postDesc?.touched }"
+        required
+        placeholder="Post Body"
+      ></textarea>
+        <small *ngIf="postDesc?.errors?.required && postDesc?.touched" style="color: red;">Post Body is Required</small>
+    </div>
+    <div class="form-group">
+      <button [disabled]="!CreatePost.form.valid" class="btn btn-success btn-block">Create Post</button>
+    </div>
+  </form>
+</div>
